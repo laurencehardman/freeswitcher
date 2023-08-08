@@ -84,8 +84,8 @@ module FSR
   # This will enable sqlite db access
   def self.find_freeswitch_install
     good_path = FS_INSTALL_PATHS.find do |fs_path|
-      FSR::Log.warn("#{fs_path} is not a directory!") if File.exists?(fs_path) && !File.directory?(fs_path)
-      FSR::Log.warn("#{fs_path} is not readable by this user!") if File.exists?(fs_path) && !File.readable?(fs_path)
+      FSR::Log.warn("#{fs_path} is not a directory!") if File.exist?(fs_path) && !File.directory?(fs_path)
+      FSR::Log.warn("#{fs_path} is not readable by this user!") if File.exist?(fs_path) && !File.readable?(fs_path)
       Dir["#{fs_path}/{conf,db}/"].size == 2 ? fs_path.to_s : nil
     end
     FSR::Log.warn("No FreeSWITCH install found, database and configuration functionality disabled") if  good_path.nil?
